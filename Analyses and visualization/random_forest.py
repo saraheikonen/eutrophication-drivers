@@ -35,7 +35,7 @@ def main():
     
     # rf input data paths
     data_path = 'Y:/Dippa/Data/model_output/Final_tables/rf_table.csv' # variable data
-    parent_df_path = 'Y:/Dippa/Data/processing/valuma-aluejako/lake_catchments_parents_manual.csv'
+    parent_df_path = 'Y:/Dippa/Data/processing/valuma-aluejako/lake_catchments_parents.csv'
     
     # saving options
     save_base_path = 'C:/Users/heikons1/Git local/eutrophication-drivers/' # edit accordingly
@@ -377,9 +377,9 @@ def make_shap_waterfall_plot(shap_values, features, save, save_path, num_display
     cum_sum = cum_sum[:num_display]
     
     rename_dict = {'prec_ws':'Winter season precipitation',
-                   'prec_gs':'Growing season precipitation',
+                   'prec_gs':'Summer season precipitation',
                    'temp_ws':'Winter season temperature',
-                   'temp_gs':'Growing season temperature',
+                   'temp_gs':'Summer season temperature',
                    'agric':'Agricultural area %', 'water':'Lake area %',
                    'built': 'Built area %', 'peatland': 'Peatland area %',
                    'mean_depth': 'Mean depth', 'Tyyppi_lyh': 'Natural eutrophication level',
@@ -430,9 +430,9 @@ def plot_shap(shap_values_all_runs, all_samples, save, save_path):
     var_names = pd.Index(samples_plot.columns.values)
     
     rename_dict = {'prec_ws':'Winter season precipitation',
-                   'prec_gs':'Growing season precipitation',
+                   'prec_gs':'Summer season precipitation',
                    'temp_ws':'Winter season temperature',
-                   'temp_gs':'Growing season temperature',
+                   'temp_gs':'Summer season temperature',
                    'agric':'Agricultural area %', 'water':'Lake area %',
                    'built': 'Built area %', 'peatland': 'Peatland area %',
                    'mean_depth': 'Mean depth', 'Tyyppi_lyh': 'Natural eutrophication level',
@@ -531,9 +531,9 @@ def plot_permutation_importance(results_base_path, model_area):
     
         var_importance = pd.read_csv(importance_path)
         rename_dict = {'prec_ws':'Winter season precipitation',
-                       'prec_gs':'Growing season precipitation',
+                       'prec_gs':'Summer season precipitation',
                        'temp_ws':'Winter season temperature',
-                       'temp_gs':'Growing season temperature',
+                       'temp_gs':'Summer season temperature',
                        'agric':'Agricultural area %', 'water':'Lake area %',
                        'built': 'Built area %', 'peatland': 'Peatland area %',
                        'mean_depth': 'Mean depth', 'Tyyppi_lyh': 'Natural eutrophication level',

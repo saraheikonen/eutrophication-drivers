@@ -11,7 +11,7 @@ def main():
     
     # load rf-table to find the lakes and catchments that are included in the study once
     # lakes with null variable values ave been excluded
-    final_table_path = 'W:/Dippa/Data/model_output/Final_tables/rf_table.csv'
+    final_table_path = 'Y:/Dippa/Data/model_output/Final_tables/rf_table.csv'
     final_table = pd.read_csv(final_table_path)
     lakes_included_ids = final_table.VPDTunnus.values
     
@@ -52,16 +52,22 @@ def main():
     #print(all_contained_ids)      
 
     # make a df of all the parent catchments, with the number of nested catcments
-    not_nested_catch = catchments_sorted.groupby('parent').count()
+    catchments_sorted_copy = catchments_sorted.copy()
+    # catchment that does not have a parent is its own parent
+    catchments_sorted_copy.parent = catchments_sorted_copy.apply(lambda x: x.VPDTunnus if pd.isna(x.parent) else x.parent, axis=1)
+    not_nested_catch = catchments_sorted_copy.groupby('parent').count()
     # drop extra columns, save as csv
     not_nested_catch.drop(columns=['TunnuEdit', 'Nimi', 'UNIQUEID', 'Area', 
-                                   'geometry', 'centroid', 'VPDTunnus'], inplace=True)
+                                   'geometry', 'centroid', 'VPDTunnus',
+                                   'mean_depth', 'VPDLyh', 'Jako1'], inplace=True)
     not_nested_catch.rename(columns={'index':'lakes_within'}, inplace=True)
-    not_nested_catch.to_csv('W:/Dippa/Data/processing/valuma-aluejako/not_nested_catchments.csv')
+    not_nested_catch.to_csv('Y:/Dippa/Data/processing/valuma-aluejako/not_nested_catchments.csv')
     # save the df of all the catchments with the ids of their parent catchments
-    catchments_parents = catchments_sorted.drop(columns=['index','TunnuEdit', 'Nimi', 
-                                                         'UNIQUEID', 'Area', 'geometry', 'centroid'])
-    catchments_parents.to_csv('W:/Dippa/Data/processing/valuma-aluejako/lake_catchments_parents.csv')
+    catchments_parents = catchments_sorted_copy.drop(columns=['index','TunnuEdit', 'Nimi', 
+                                                         'UNIQUEID', 'Area', 'geometry',
+                                                         'centroid', 'mean_depth', 'Jako1',
+                                                         'VPDLyh'])
+    catchments_parents.to_csv('Y:/Dippa/Data/processing/valuma-aluejako/lake_catchments_parents.csv')
     
 def check_contained(catchments_sorted, catch_id):
     # iterate through sorted dataframe, return list of catchments that are within

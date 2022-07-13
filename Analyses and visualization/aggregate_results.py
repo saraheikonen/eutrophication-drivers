@@ -15,7 +15,7 @@ def main(results_base_path):
     # read results data into a dataframe
     # 1. read catchments geometries and parent info
     catchments_path = 'Y:/Dippa/Data/model_input/basins/catchments_with_depth'
-    parent_df_path = 'Y:/Dippa/Data/processing/valuma-aluejako/lake_catchments_parents_manual.csv' 
+    parent_df_path = 'Y:/Dippa/Data/processing/valuma-aluejako/lake_catchments_parents.csv' 
 
     catchments = gpd.read_file(catchments_path)
     parent_df = pd.read_csv(parent_df_path)

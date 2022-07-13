@@ -38,4 +38,4 @@ def main(lakes, final_table):
     final_table_paajako = pd.merge(final_table, mid_catch_lakes_short, how='inner', on='VPDTunnus')
     
     return final_table_paajako
-    #final_table_paajako.to_csv('Y:/Dippa/Data/model_output/Final_tables/rf_table.csv', index=False)
+

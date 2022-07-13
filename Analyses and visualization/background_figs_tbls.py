@@ -91,7 +91,7 @@ map_table = table
 
 borders_path = 'Y:/Dippa/Data/processing/mml/hallintorajat_10k/2020' # administrative borders
 catchments_path = 'Y:/Dippa/Data/model_input/basins/catchments_with_depth' # study catchments
-parent_df_path = 'Y:/Dippa/Data/processing/valuma-aluejako/lake_catchments_parents_manual.csv' # study catchment hierarchies
+parent_df_path = 'Y:/Dippa/Data/processing/valuma-aluejako/lake_catchments_parents.csv' # study catchment hierarchies
 
 borders = gpd.read_file(borders_path)
 borders_latlon= borders.to_crs('EPSG:4326')
@@ -136,7 +136,7 @@ chla_fig.savefig(out_path + 'mean_chla_agg_not_nested_mean.png', bbox_inches = '
 map_table = table
 borders_path = 'Y:/Dippa/Data/processing/mml/hallintorajat_10k/2020' # administrative borders
 catchments_path = 'Y:/Dippa/Data/model_input/basins/catchments_with_depth/' # study catchments
-parent_df_path = 'Y:/Dippa/Data/processing/valuma-aluejako/lake_catchments_parents_manual.csv' # study catchment hierarchies
+parent_df_path = 'Y:/Dippa/Data/processing/valuma-aluejako/lake_catchments_parents.csv' # study catchment hierarchies
 
 borders = gpd.read_file(borders_path)
 catchments = gpd.read_file(catchments_path)
